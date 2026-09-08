@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ChevronDown,
+  ExternalLink,
+  X,
 } from "lucide-react";
 
 import Navbar from "../layout/Navbar";
@@ -984,6 +986,26 @@ const FAQSection = () => {
 
 const ComplaintsTable = () => {
   const [monthYear, setMonthYear] = useState("");
+  const [activeCertificate, setActiveCertificate] = useState<{
+    title: string;
+    pdfUrl: string;
+  } | null>(null);
+
+  useEffect(() => {
+    if (activeCertificate) {
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setActiveCertificate(null);
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "unset";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [activeCertificate]);
 
   useEffect(() => {
     const now = new Date();
@@ -1196,7 +1218,19 @@ const ComplaintsTable = () => {
                 <tr className="">
                   <td className="py-[12px] px-[12px] text-sm font-bold text-left">1</td>
                   <td className="py-[12px] text-sm font-bold text-left">
-                    FY 2025-26
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setActiveCertificate({
+                          title: "Annual Audit Compliance Certificate (FY 2025-26)",
+                          pdfUrl: "/certificates/Annual audit compliance cert. scanned copy.pdf",
+                        })
+                      }
+                      className="text-[#024B39] hover:underline cursor-pointer font-bold text-left"
+                      aria-label="Open FY 2025-26 Compliance Audit Certificate in popup"
+                    >
+                      FY 2025-26
+                    </button>
                   </td>
                   <td className="py-[12px] px-[15px] text-sm font-bold text-left">N/A</td>
                   <td className="py-[12px] text-sm font-bold text-left">N/A</td>
@@ -1258,10 +1292,36 @@ const ComplaintsTable = () => {
                 <tr className="">
                   <td className="py-[12px] px-[12px] text-sm font-bold text-left">1</td>
                   <td className="py-[12px] text-sm font-bold text-left">
-                    FY 2025-26
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setActiveCertificate({
+                          title: "Client Level Segregation Certificate (FY 2025-26)",
+                          pdfUrl: "/certificates/SEGREGATION CERTIFICATE.pdf",
+                        })
+                      }
+                      className="text-[#024B39] hover:underline cursor-pointer font-bold text-left"
+                      aria-label="Open FY 2025-26 Segregation Certificate in popup"
+                    >
+                      FY 2025-26
+                    </button>
                   </td>
                   <td className="py-[12px] px-[15px] text-sm font-bold text-left">Compliance Report</td>
-                  <td className="py-[12px] text-sm font-bold text-left">Client Level Segregation Report</td>
+                  <td className="py-[12px] text-sm font-bold text-left">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setActiveCertificate({
+                          title: "Client Level Segregation Report (FY 2025-26)",
+                          pdfUrl: "/certificates/SEGREGATION CERTIFICATE.pdf",
+                        })
+                      }
+                      className="text-[#024B39] hover:underline cursor-pointer font-bold text-left"
+                      aria-label="Open Client Level Segregation Report Certificate in popup"
+                    >
+                      Client Level Segregation Report
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -1274,6 +1334,57 @@ const ComplaintsTable = () => {
           </div>
         </div>
 
+        {/* Certificate Modal Popup */}
+        {activeCertificate && (
+          <div
+            className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-3 sm:p-4 md:p-6"
+            role="dialog"
+            aria-modal="true"
+            aria-label={activeCertificate.title}
+            onClick={() => setActiveCertificate(null)}
+          >
+            <div
+              className="relative w-full max-w-5xl h-[88vh] bg-white rounded-2xl md:rounded-[24px] shadow-2xl flex flex-col overflow-hidden border border-gray-100"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header */}
+              <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-gray-100 bg-[#FAFAFA]">
+                <h3 className="text-base sm:text-lg font-bold text-[#44475B] truncate pr-4">
+                  {activeCertificate.title}
+                </h3>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={activeCertificate.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 sm:p-2 text-gray-500 hover:text-[#024B39] hover:bg-gray-100 rounded-full transition-colors"
+                    title="Open in new tab"
+                    aria-label="Open certificate in new tab"
+                  >
+                    <ExternalLink size={20} />
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setActiveCertificate(null)}
+                    className="p-1.5 sm:p-2 text-gray-500 hover:text-red-500 hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
+                    aria-label="Close certificate popup"
+                  >
+                    <X size={22} />
+                  </button>
+                </div>
+              </div>
+
+              {/* PDF Viewer Frame */}
+              <div className="flex-1 w-full bg-gray-100 relative">
+                <iframe
+                  src={activeCertificate.pdfUrl}
+                  className="w-full h-full border-0"
+                  title={activeCertificate.title}
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
