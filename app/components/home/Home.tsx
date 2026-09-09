@@ -1191,7 +1191,7 @@ const ComplaintsTable = () => {
             role="region"
             aria-label="Compliance audit status table container"
           >
-            <table className="w-full text-center border-collapse" aria-label="Compliance Audit Status details by Financial Year">
+            <table className="w-full min-w-[600px] text-center border-collapse table-fixed" aria-label="Compliance Audit Status details by Financial Year">
               <thead>
                 <tr
                   className="text-[#4D4D4D] border-b border-gray-100 bg-[#E6F0FA]"
@@ -1200,24 +1200,25 @@ const ComplaintsTable = () => {
                       "linear-gradient(270deg, #CFE4F3 0%, #FAFAFA 63.46%)",
                   }}
                 >
-                  <th className="py-[10px] px-[12px] text-[13px] font-extrabold tracking-tight text-left" aria-label="Serial Number">
+                  <th className="w-[12%] py-[10px] px-4 text-[13px] font-extrabold tracking-tight text-left" aria-label="Serial Number">
                     Sr.No.
                   </th>
-                  <th className="py-[10px] text-[13px] font-extrabold tracking-tight text-left">
+                  <th className="w-[26%] py-[10px] px-4 text-[13px] font-extrabold tracking-tight text-left">
                     Financial Year
                   </th>
-                  <th className="py-[10px] px-[15px] text-[13px] font-extrabold tracking-tight text-left">
+                  <th className="w-[38%] py-[10px] px-4 text-[13px] font-extrabold tracking-tight text-left">
                     Compliance Audit Status
                   </th>
-                  <th className="py-[10px] text-[13px] font-extrabold tracking-tight text-left">
+                  <th className="w-[24%] py-[10px] px-4 text-[13px] font-extrabold tracking-tight text-left">
                     Remarks, If any
                   </th>
                 </tr>
               </thead>
               <tbody className="text-[#212121] bg-[#FFFFFF]">
                 <tr className="">
-                  <td className="py-[12px] px-[12px] text-sm font-bold text-left">1</td>
-                  <td className="py-[12px] text-sm font-bold text-left">
+                  <td className="py-[12px] px-4 text-sm font-bold text-left">1</td>
+                  <td className="py-[12px] px-4 text-sm font-bold text-left">FY 2025-26</td>
+                  <td className="py-[12px] px-4 text-sm font-bold text-left">
                     <button
                       type="button"
                       onClick={() =>
@@ -1226,14 +1227,14 @@ const ComplaintsTable = () => {
                           pdfUrl: "/certificates/Annual audit compliance cert. scanned copy.pdf",
                         })
                       }
-                      className="text-[#024B39] hover:underline cursor-pointer font-bold text-left"
+                      className="inline-flex items-center gap-1.5 text-[#0056B3] hover:text-[#024B39] underline underline-offset-4 decoration-[#0056B3]/70 hover:decoration-[#024B39] cursor-pointer font-bold text-left transition-colors group"
                       aria-label="Open FY 2025-26 Compliance Audit Certificate in popup"
                     >
-                      FY 2025-26
+                      <span>Completed</span>
+                      <ExternalLink size={14} className="shrink-0 transition-transform group-hover:scale-110" />
                     </button>
                   </td>
-                  <td className="py-[12px] px-[15px] text-sm font-bold text-left">N/A</td>
-                  <td className="py-[12px] text-sm font-bold text-left">N/A</td>
+                  <td className="py-[12px] px-4 text-sm font-bold text-left">N/A</td>
                 </tr>
               </tbody>
             </table>
@@ -1265,7 +1266,7 @@ const ComplaintsTable = () => {
             role="region"
             aria-label="Client level segregation report table container"
           >
-            <table className="w-full text-center border-collapse" aria-label="Client Level Segregation Report details by Financial Year">
+            <table className="w-full min-w-[600px] text-center border-collapse table-fixed" aria-label="Client Level Segregation Report details by Financial Year">
               <thead>
                 <tr
                   className="text-[#4D4D4D] border-b border-gray-100 bg-[#E6F0FA]"
@@ -1274,24 +1275,25 @@ const ComplaintsTable = () => {
                       "linear-gradient(270deg, #CFE4F3 0%, #FAFAFA 63.46%)",
                   }}
                 >
-                  <th className="py-[10px] px-[12px] text-[13px] font-extrabold tracking-tight text-left" aria-label="Serial Number">
+                  <th className="w-[12%] py-[10px] px-4 text-[13px] font-extrabold tracking-tight text-left" aria-label="Serial Number">
                     Sr.No.
                   </th>
-                  <th className="py-[10px] text-[13px] font-extrabold tracking-tight text-left">
+                  <th className="w-[26%] py-[10px] px-4 text-[13px] font-extrabold tracking-tight text-left">
                     Financial Year
                   </th>
-                  <th className="py-[10px] px-[15px] text-[13px] font-extrabold tracking-tight text-left">
-                    Audit Report
+                  <th className="w-[38%] py-[10px] px-4 text-[13px] font-extrabold tracking-tight text-left">
+                    Report Status
                   </th>
-                  <th className="py-[10px] text-[13px] font-extrabold tracking-tight text-left">
-                    Client Level Segregation Report
+                  <th className="w-[24%] py-[10px] px-4 text-[13px] font-extrabold tracking-tight text-left">
+                    Remarks, If any
                   </th>
                 </tr>
               </thead>
               <tbody className="text-[#212121] bg-[#FFFFFF]">
                 <tr className="">
-                  <td className="py-[12px] px-[12px] text-sm font-bold text-left">1</td>
-                  <td className="py-[12px] text-sm font-bold text-left">
+                  <td className="py-[12px] px-4 text-sm font-bold text-left">1</td>
+                  <td className="py-[12px] px-4 text-sm font-bold text-left">FY 2025-26</td>
+                  <td className="py-[12px] px-4 text-sm font-bold text-left">
                     <button
                       type="button"
                       onClick={() =>
@@ -1300,28 +1302,14 @@ const ComplaintsTable = () => {
                           pdfUrl: "/certificates/SEGREGATION CERTIFICATE.pdf",
                         })
                       }
-                      className="text-[#024B39] hover:underline cursor-pointer font-bold text-left"
+                      className="inline-flex items-center gap-1.5 text-[#0056B3] hover:text-[#024B39] underline underline-offset-4 decoration-[#0056B3]/70 hover:decoration-[#024B39] cursor-pointer font-bold text-left transition-colors group"
                       aria-label="Open FY 2025-26 Segregation Certificate in popup"
                     >
-                      FY 2025-26
+                      <span>Completed</span>
+                      <ExternalLink size={14} className="shrink-0 transition-transform group-hover:scale-110" />
                     </button>
                   </td>
-                  <td className="py-[12px] px-[15px] text-sm font-bold text-left">Compliance Report</td>
-                  <td className="py-[12px] text-sm font-bold text-left">
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setActiveCertificate({
-                          title: "Client Level Segregation Report (FY 2025-26)",
-                          pdfUrl: "/certificates/SEGREGATION CERTIFICATE.pdf",
-                        })
-                      }
-                      className="text-[#024B39] hover:underline cursor-pointer font-bold text-left"
-                      aria-label="Open Client Level Segregation Report Certificate in popup"
-                    >
-                      Client Level Segregation Report
-                    </button>
-                  </td>
+                  <td className="py-[12px] px-4 text-sm font-bold text-left">N/A</td>
                 </tr>
               </tbody>
             </table>
