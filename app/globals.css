@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-
+.hyper_button {
+  color: "black";
+}
 
 :root {
   --background: #FAFAFA;
